@@ -28,7 +28,7 @@ document.getElementById('emailForm').addEventListener('submit', function(event) 
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Basic ' + btoa('bbaca755385bbff79b8847769c5bd921:a7c46bd70bafe82ac3790e0e9a2c5709')
+    'Authorization': 'Basic ' + btoa('bbaca755385bbff79b8847769c5bd921:2e2bf7ff31320c233a43583c8d293525')
     },
     body: JSON.stringify(data)
     }) 

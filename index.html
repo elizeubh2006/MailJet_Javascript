@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Envio de Email</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enviar Email com Mailjet</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-<h1>Envio de Email</h1>
-<form id="emailForm">
-<label for="to">Para:</label>
-<input type="email" id="to" name="to" required>
-<label for="subject">Assunto:</label>
-<input type="text" id="subject" name="subject" required>
-<label for="body">Mensagem:</label>
-<textarea id="body" name="body" required></textarea>
-<button type="submit">Enviar</button>
-</form>
-<div id="response"></div>
-</div>
-<script src="script.js"></script>
+  <div class="container">
+    <h1>Enviar Email</h1>
+    <form id="emailForm">
+      <label for="toEmail">Para:</label>
+      <input type="email" id="toEmail" name="toEmail" required>
+
+      <label for="subject">Assunto:</label>
+      <input type="text" id="subject" name="subject" required>
+
+      <label for="message">Mensagem:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="statusMessage"></p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

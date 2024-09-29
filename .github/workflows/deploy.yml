@@ -1,0 +1,46 @@
+name: Send Email via Mailjet
+
+# Quando rodar o GitHub Action - aqui ele será executado quando houver um "push" para o branch "main"
+on:
+  workflow_dispatch: # Isso permite que você execute manualmente a action pelo GitHub UI.
+  push:
+    branches:
+      - main
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checar o repositório
+        uses: actions/checkout@v3
+
+      - name: Enviar email com Mailjet
+        run: |
+          curl -s -X POST --user "$MAILJET_API_KEY:$MAILJET_SECRET" \
+          https://api.mailjet.com/v3.1/send \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "Messages":[
+              {
+                "From": {
+                  "Email": "'"$MAILJET_FROM_EMAIL"'",
+                  "Name": "'"$MAILJET_FROM_NAME"'"
+                },
+                "To": [
+                  {
+                    "Email": "destinatario@exemplo.com",
+                    "Name": "Nome Destinatário"
+                  }
+                ],
+                "Subject": "Assunto do E-mail",
+                "TextPart": "Conteúdo simples do e-mail",
+                "HTMLPart": "<h3>Conteúdo HTML do e-mail</h3><p>Parágrafo de exemplo.</p>"
+              }
+            ]
+          }'
+        env:
+          MAILJET_API_KEY: ${{ secrets.MAILJET_API_KEY }}
+          MAILJET_SECRET: ${{ secrets.MAILJET_SECRET }}
+          MAILJET_FROM_EMAIL: ${{ secrets.MAILJET_FROM_EMAIL }}
+          MAILJET_FROM_NAME: ${{ secrets.MAILJET_FROM_NAME }}
